@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 class="text-2xl font-bold text-center p-5 text-blue-500">
+      Bill-Splitter App
+    </h1>
+    <div class=" flex justify-center items-center">
+      <form
+        [formGroup]="infoForm"
+        class="border p-5 rounded-lg shadow-md w-full max-w-md"
+      >
+        <div class="flex flex-col gap-4">
+          <div class="flex flex-row gap-4">
+            <label for="totalBill">Total Bill :</label>
+            <input
+              id="totalBill"
+              formControlName="totalBill"
+              type="number"
+             
+            />
+            @if (BillControl?.invalid && BillControl?.touched) {
+              @if (BillControl?.errors?.["required"]) {
+                <span class="text-red-500 text-sm">Your Bill is required.</span>
+              }
+              @if (BillControl?.errors?.["min"]) {
+                <span class="text-red-500 text-sm">invalid Bill.</span>
+              }
+            }
+          </div>
+          <div class="flex flex-row gap-4">
+            <label for="numberOfPeople">No. of People :</label>
+            <input
+              id="numberOfPeople"
+              formControlName="numberOfPeople"
+              type="number"
+            />
+            @if (PeopleControl?.invalid && PeopleControl?.touched) {
+              @if (PeopleControl?.errors?.["required"]) {
+                <span class="text-red-500 text-sm"
+                  >No. of People is required.</span
+                >
+              }
+              @if (PeopleControl?.errors?.["min"]) {
+                <span class="text-red-500 text-sm">invalid people.</span>
+              }
+            }
+          </div>
+          <div class="flex flex-row gap-2">
+            <label for="tipPercentage">Tip Percentage :</label>
+            <input
+              id="tipPercentage"
+              formControlName="tipPercentage"
+              type="number"
+            />
+            @if (TipControl?.invalid && TipControl?.touched) {
+              @if (TipControl?.errors?.["min"]) {
+                <span class="text-red-500 text-sm">invalid tip %.</span>
+              }
+            }
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="p-5 text-center mx-20">
+      @if (infoForm.valid) {
+        <p class="text-lg font-semibold">
+          Tip Amount: ${{ tipAmount.toFixed(2) }}
+        </p>
+        <p class="text-lg font-semibold">
+          Total Amount: ${{ totalAmount.toFixed(2) }}
+        </p>
+        <p class="text-lg font-semibold">
+          Each Person Pays: ${{ eachPersonPays.toFixed(2) }}
+        </p>
+      } @else {
+        <p class="text-lg font-semibold text-red-500">
+          Please fill out the form correctly to see the results.
+        </p>
+      }
+    </div>
+    <div class="flex justify-center items-center gap-4">
+      <div class=" flex flex-col justify-center items-center  mt-2 px-5">
+        <button
+          class="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-4 py-2 rounded"
+          (click)="copyBill()"
+        >
+          Copy Bill
+        </button>
+        <div class="h-6 mt-2">
+          @if (clicked) {
+            <p class="text-green-500 text-sm">Bill copied to clipboard!</p>
+          }
+        </div>
+      </div>
+      <div class="mb-5 px-5">
+        <button
+          class="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-4 py-2 rounded"
+          (click)="addToHistory()"
+        >
+          Add to History
+        </button>
+      </div>
+    </div>
+
+    <div class=" mt-5 pt-5">
+      <h2 class="text-center text-blue-500 text-2xl font-bold mt-5 py-5">
+        History
+      </h2>
+      <button
+       class="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-4 py-2 rounded mb-5 text-center mx-auto block" (click)="clearData()">
+        clear history
+      </button>
+      @if (infoForm.invalid && getData().length === 0 ) {
+        <p class="text-center text-gray-500">No history available</p>
+      } @else {
+        <table class="w-half border-collapse border border-gray-300 mx-auto">
+          <tr class="bg-blue-100 text-center">
+            <Th class="border border-blue-300 px-4 py-2">Bill</Th>
+            <Th class="border border-blue-300 px-4 py-2">People</Th>
+            <Th class="border border-blue-300 px-4 py-2">Tip %</Th>
+            <Th class="border border-blue-300 px-4 py-2">Amount per person</Th>
+            <th class="border border-blue-300 px-4 py-2">Total Bill</th>
+          </tr>
+          @for (item of getData(); track $index) {
+            <tr class="text-center">
+              <td class="border border-gray-300 px-4 py-2">
+                {{ item.billAmount }}
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                {{ item.people }}
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                {{ item.tipPercentage }}
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                {{ item.perPersonShare.toFixed(2) }}
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                {{ item.totalAmount.toFixed(2) }}
+              </td>
+            </tr>
+          }
+        </table>
+      }
+
+      
+    </div>
+  </body>
+</html>
