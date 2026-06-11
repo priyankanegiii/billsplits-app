@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormGroup , FormControl , Validators } from '@angular/forms';
-import { HistoryService } from '../service/history.service';
+import { HistoryService } from '../../services/history.service';
 
 @Component({
   selector: 'app-calculator',
@@ -14,7 +14,7 @@ export class CalculatorComponent {
 
    infoForm = new FormGroup({
     totalBill : new FormControl(
-      '0',
+      ' ',
     [
       Validators.required,
       Validators.min(0),
@@ -22,7 +22,7 @@ export class CalculatorComponent {
 
     ]),
     numberOfPeople : new FormControl(
-      '1',
+      '2',
       [
         Validators.required,
         Validators.min(1)
@@ -68,6 +68,12 @@ export class CalculatorComponent {
       });
 }
 
+ 
+ preventNegative(event: KeyboardEvent) {
+  if (event.key === '-') {
+    event.preventDefault();
+  }
+}
  get BillControl(){
   return this.infoForm.get('totalBill');
 }

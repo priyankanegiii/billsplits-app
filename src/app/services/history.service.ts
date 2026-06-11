@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {HistoryItem} from "../history/history.component.interface";
+import {HistoryItem} from "../models/model.history";
 
 @Injectable({
     providedIn :'root'
@@ -9,20 +9,10 @@ import {HistoryItem} from "../history/history.component.interface";
 
 export class HistoryService{
 
-    
-   private  historyarray: HistoryItem[] = [{
-    billAmount: NaN,
-    people : NaN,
-    tipPercentage: NaN,
-    perPersonShare: NaN,
-    totalAmount: NaN
-   }];
+    private historyarray: HistoryItem[] = [];
 
     
    addHistoryItem(item : HistoryItem) {
-    if(this.historyarray.length ==1 && isNaN(this.historyarray[0].billAmount)){
-        this.clearHistory();
-    }
     
     this.historyarray.push(item);
 

@@ -1,27 +1,74 @@
-# BillSplitter
+# Bill Splitter App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+A simple Angular application that allows users to split a bill among multiple people, optionally add a tip, calculate each person's share, and generate a detailed bill summary
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Features
 
-## Code scaffolding
+-> Enter bill amount and no. of people.
+-> Add or skip tip.
+-> Calculate final bill amount.
+-> Split bill among multiple people.
+-> Generate bill summary.
+-> Store calculation history for future reference.
+-> Responsive UI using Tailwind CSS and Angular
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+# Tech Stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Angular 18+
+TypeScript
+Reactive Forms
+Tailwind CSS
+HTML
+CSS
 
-## Running unit tests
+# Project Structure
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+bill-splitter/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   └── calculator/
+│   │   │       ├── calculator.component.ts
+│   │   │       ├── calculator.component.html
+│   │   │       ├── calculator.component.scss
+│   │   │       └── calculator.component.spec.ts
+│   │   │
+│   │   ├── models/
+│   │   │   └── model.history.ts
+│   │   │
+│   │   ├── services/
+│   │   │   └── history.service.ts
+│   │   │
+│   │   ├── app.component.ts
+│   │   ├── app.component.html
+│   │   ├── app.component.scss
+│   │   ├── app.component.spec.ts
+│   │   ├── app.config.ts
+│   │   └── app.routes.ts
+│   │
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.scss
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Installation
 
-## Further help
+1. Clone the Repository
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+git clone https://github.com/priyankanegiii/billsplits-app.git
+
+2. Navigate to the Project Folder
+cd bill-splits
+
+3. Install Dependencies
+npm install
+
+4. Run the Application
+ng serve
+
+5. Open in Browser
+https://billsplits-app.vercel.app/
+
+

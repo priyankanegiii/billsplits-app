@@ -16,19 +16,23 @@
       >
         <div class="flex flex-col gap-4">
           <div class="flex flex-row gap-4">
-            <label for="totalBill">Total Bill :</label>
+            <label for="totalBill" class="mr-5">Total Bill :</label>
             <input
               id="totalBill"
               formControlName="totalBill"
               type="number"
+              (keydown)="preventNegative($event)"
+              class="border border-blue-300 rounded px-2 py-1  w-60 ml-4"
+
+              
              
             />
             @if (BillControl?.invalid && BillControl?.touched) {
               @if (BillControl?.errors?.["required"]) {
-                <span class="text-red-500 text-sm">Your Bill is required.</span>
+                <span class="text-red-500 text-[0.7rem]">Your Bill is required.</span>
               }
               @if (BillControl?.errors?.["min"]) {
-                <span class="text-red-500 text-sm">invalid Bill.</span>
+                <span class="text-red-500 text-[0.7rem]">invalid Bill.</span>
               }
             }
           </div>
@@ -38,15 +42,17 @@
               id="numberOfPeople"
               formControlName="numberOfPeople"
               type="number"
+              (keydown)="preventNegative($event)"
+              class="border border-blue-300 rounded px-2 py-1 w-60"
             />
             @if (PeopleControl?.invalid && PeopleControl?.touched) {
               @if (PeopleControl?.errors?.["required"]) {
-                <span class="text-red-500 text-sm"
+                <span class="text-red-500 text-[0.7rem]"
                   >No. of People is required.</span
                 >
               }
               @if (PeopleControl?.errors?.["min"]) {
-                <span class="text-red-500 text-sm">invalid people.</span>
+                <span class="text-red-500 text-[0.7rem]">invalid people.</span>
               }
             }
           </div>
@@ -56,10 +62,12 @@
               id="tipPercentage"
               formControlName="tipPercentage"
               type="number"
+              (keydown)="preventNegative($event)"
+              class="border border-blue-300 rounded px-2 py-1 w-60"
             />
             @if (TipControl?.invalid && TipControl?.touched) {
               @if (TipControl?.errors?.["min"]) {
-                <span class="text-red-500 text-sm">invalid tip %.</span>
+                <span class="text-red-500 text-[0.7rem]">invalid tip %.</span>
               }
             }
           </div>
@@ -115,15 +123,15 @@
        class="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-4 py-2 rounded mb-5 text-center mx-auto block" (click)="clearData()">
         clear history
       </button>
-      @if (infoForm.invalid && getData().length === 0 ) {
+      @if ( getData().length === 0 ) {
         <p class="text-center text-gray-500">No history available</p>
       } @else {
         <table class="w-half border-collapse border border-gray-300 mx-auto">
           <tr class="bg-blue-100 text-center">
-            <Th class="border border-blue-300 px-4 py-2">Bill</Th>
-            <Th class="border border-blue-300 px-4 py-2">People</Th>
-            <Th class="border border-blue-300 px-4 py-2">Tip %</Th>
-            <Th class="border border-blue-300 px-4 py-2">Amount per person</Th>
+            <th class="border border-blue-300 px-4 py-2">Bill</th>
+            <th class="border border-blue-300 px-4 py-2">People</th>
+            <th class="border border-blue-300 px-4 py-2">Tip %</th>
+            <th class="border border-blue-300 px-4 py-2">Amount per person</th>
             <th class="border border-blue-300 px-4 py-2">Total Bill</th>
           </tr>
           @for (item of getData(); track $index) {
@@ -135,7 +143,7 @@
                 {{ item.people }}
               </td>
               <td class="border border-gray-300 px-4 py-2">
-                {{ item.tipPercentage }}
+                {{ item.tipPercentage }}%
               </td>
               <td class="border border-gray-300 px-4 py-2">
                 {{ item.perPersonShare.toFixed(2) }}
