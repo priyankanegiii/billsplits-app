@@ -20,7 +20,10 @@ export class HistoryService{
 
     
    addHistoryItem(item : HistoryItem) {
-    this.clearHistory();
+    if(this.historyarray.length ==1 && isNaN(this.historyarray[0].billAmount)){
+        this.clearHistory();
+    }
+    
     this.historyarray.push(item);
 
     console.log(this.historyarray);
