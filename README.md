@@ -95,7 +95,7 @@ https://billsplits-app.vercel.app/
 
 <div align="center">
 
-### Made with ❤️ using Angular & Tailwind CSS
+## Made with ❤️ using Angular & Tailwind CSS
 
 *Bill Splitter - Simplifying bill sharing, one calculation at a time.*
 
