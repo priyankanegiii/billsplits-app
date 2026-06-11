@@ -23,8 +23,9 @@ Tailwind CSS
 HTML
 CSS
 
-# Project Structure
+## 📂 Project Structure
 
+```text
 bill-splitter/
 ├── src/
 │   ├── app/
@@ -36,7 +37,7 @@ bill-splitter/
 │   │   │       └── calculator.component.spec.ts
 │   │   │
 │   │   ├── models/
-│   │   │   └── model.history.ts
+│   │   │   └── model.ts
 │   │   │
 │   │   ├── services/
 │   │   │   └── history.service.ts
@@ -51,7 +52,12 @@ bill-splitter/
 │   ├── index.html
 │   ├── main.ts
 │   └── styles.scss
-
+│
+├── angular.json
+├── package.json
+├── tailwind.config.js
+└── README.md
+```
 
 # Installation
 
